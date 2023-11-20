@@ -1,25 +1,4 @@
-import axios from 'axios';
-
-const apiKey = 'live_qZO7TNMdL1rg7fGC7EGhcr1xQ0BS5PeYcJYCFQPoKnJmK1M7zLIYuo7mVRMjgG7g'; 
-
-axios.defaults.headers.common['x-api-key'] = apiKey;
-
-export function fetchBreeds() {
-  return axios.get('https://api.thecatapi.com/v1/breeds')
-    .then(response => response.data)
-    .catch(error => {
-      throw new Error(error);
-    });
-}
-
-export function fetchCatByBreed(breedId) {
-  return axios.get(`https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}`)
-    .then(response => response.data)
-    .catch(error => {
-      throw new Error(error);
-    });
-}
-
+// Вже існуючий код
 import { fetchBreeds, fetchCatByBreed } from './cat-api.js';
 
 const breedSelect = document.querySelector('.breed-select');
@@ -31,34 +10,6 @@ const description = document.querySelector('.description');
 const temperament = document.querySelector('.temperament');
 const catImage = document.querySelector('.cat-image');
 
-// Код для отримання URL зображення
-function fetchCatByBreed(breedId) {
-  const url = `https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}`;
-  return axios.get(url)
-    .then(response => response.data)
-    .catch(error => {
-      console.error('Error fetching cat image:', error);
-      throw error;
-    });
-}
-
-// Отримання ідентифікатора породи
-const breedSelect = document.querySelector('.breed-select');
-const catImage = document.querySelector('.cat-image');
-
-breedSelect.addEventListener('change', async (event) => {
-  const breedId = event.target.value;
-
-  try {
-    const data = await fetchCatByBreed(breedId);
-    const imageURL = data[0]?.url || ''; // Отримання URL зображення (якщо воно є)
-
-    catImage.setAttribute('src', imageURL); // Встановлення зображення
-    catImage.setAttribute('alt', 'Cat'); // Встановлення атрибуту alt для зображення
-  } catch (error) {
-    console.error('Error fetching cat by breed:', error);
-  }
-});
 // Відобразити повідомлення про помилку
 function showError() {
   loader.classList.add('hidden');
@@ -117,3 +68,10 @@ breedSelect.addEventListener('change', () => {
       showError();
     });
 });
+
+// Додатковий код для встановлення URL зображення
+const imageURL = 'URL_З_ЗОБРАЖЕННЯМ';
+
+// Встановлюємо src за допомогою JavaScript
+catImage.setAttribute('src', imageURL);
+catImage.setAttribute('alt', 'Cat'); // Додатково встановлюємо атрибут alt
