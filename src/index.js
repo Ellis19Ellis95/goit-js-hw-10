@@ -56,10 +56,6 @@ function updateBreedsList(breeds) {
 }
 
 
-// Код для показу/приховання елементів
-const loader = document.querySelector('.loader');
-const error = document.querySelector('.error');
-
 function showLoader() {
   loader.classList.remove('hidden');
   error.classList.add('hidden');
