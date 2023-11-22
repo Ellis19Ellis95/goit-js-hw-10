@@ -50,10 +50,11 @@ function updateCatInfo(catData) {
   
     // Отримання URL зображення
     const imageURL = catData[0].url;
-  
+    const catImage = document.querySelector('.cat-image');
+
     // Встановлення src та alt для зображення кота
-    catImage.setAttribute('src', imageURL);
-    catImage.setAttribute('alt', 'Cat');
+   catImage.setAttribute('src', '');
+   catImage.setAttribute('alt', 'Cat');
 }
 
 // Оновлення списку порід
