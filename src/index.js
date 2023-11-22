@@ -48,7 +48,14 @@ function updateCatInfo(catData) {
   breedName.textContent = catData[0].breeds[0].name;
   description.textContent = catData[0].breeds[0].description;
   temperament.textContent = catData[0].breeds[0].temperament;
-  catImage.src = catData[0].url;
+  //catImage.src = catData[0].url;
+
+   // Отримання URL зображення
+   const imageURL = catData[0].url;
+  
+   // Встановлення src та alt за допомогою JavaScript
+   catImage.setAttribute('src', imageURL);
+   catImage.setAttribute('alt', 'Cat');
 }
 
 // Оновлення списку порід
