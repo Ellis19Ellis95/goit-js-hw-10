@@ -1,10 +1,17 @@
 import axios from 'axios';
+export function fetchBreeds() {
+    return axios.get('https://api.thecatapi.com/v1/breeds')
+      .then(response => response.data)
+      .catch(error => {
+        // Обробка помилок тут
+      });
+  }
 
 const apiKey = 'live_qZO7TNMdL1rg7fGC7EGhcr1xQ0BS5PeYcJYCFQPoKnJmK1M7zLIYuo7mVRMjgG7g';
 axios.defaults.headers.common['x-api-key'] = apiKey;
 
 export function fetchBreeds() {
-  return axios.get('https://api.thecatapi.com/v1/breeds')
+  return axios.get('https://api.thecatapi.com/v1/breeds')npm install axios
     .then(response => response.data)
     .catch(error => {
       throw new Error(error);
