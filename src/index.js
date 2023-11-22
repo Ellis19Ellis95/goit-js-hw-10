@@ -54,7 +54,7 @@ function updateCatInfo(catData) {
     // Встановлення src та alt для зображення кота
     catImage.setAttribute('src', imageURL);
     catImage.setAttribute('alt', 'Cat');
-  
+}
 
 
 
