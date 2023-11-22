@@ -30,20 +30,31 @@ const temperament = document.querySelector('.temperament');
 const catImage = document.querySelector('.cat-image');
 
 
-
-function updateCatInfo(catData) {
+// Функція для створення розмітки зображення кота
+function createCatImage(url) {
+    const catImage = document.createElement('img');
+    catImage.classList.add('cat-image');
+    catImage.setAttribute('src', url);
+    catImage.setAttribute('alt', 'Cat');
+    return catImage;
+  }
+  
+  function updateCatInfo(catData) {
     breedName.textContent = catData[0].breeds[0].name;
     description.textContent = catData[0].breeds[0].description;
     temperament.textContent = catData[0].breeds[0].temperament;
   
-    // отримання URL зображення
+    // Отримання URL зображення
     const imageURL = catData[0].url;
-    const catImage = document.querySelector('.cat-image');
+  
+    // Створення розмітки зображення кота
+    const catImg = createCatImage(imageURL);
+  
+    // Вставка зображення кота в DOM
+    catInfo.appendChild(catImg);
+  }
+  
 
-    // встановлення src та alt для зображення 
-   catImage.setAttribute('src', '');
-   catImage.setAttribute('alt', 'Cat');
-}
 
 // оновлення списку порід
 function updateBreedsList(breeds) {
