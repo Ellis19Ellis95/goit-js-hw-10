@@ -42,20 +42,21 @@ function showError() {
   error.classList.remove('hidden');
 }
 
-// Оновлення інформації про кота
-function updateCatInfo(catData) {
-  breedName.textContent = catData[0].breeds[0].name;
-  description.textContent = catData[0].breeds[0].description;
-  temperament.textContent = catData[0].breeds[0].temperament;
-  //catImage.src = catData[0].url;
 
-   // Отримання URL зображення
-   const imageURL = catData[0].url;
+function updateCatInfo(catData) {
+    breedName.textContent = catData[0].breeds[0].name;
+    description.textContent = catData[0].breeds[0].description;
+    temperament.textContent = catData[0].breeds[0].temperament;
   
-   // Встановлення src та alt за допомогою JavaScript
-   catImage.setAttribute('src', imageURL);
-   catImage.setAttribute('alt', 'Cat');
-}
+    // Отримання URL зображення
+    const imageURL = catData[0].url;
+  
+    // Встановлення src та alt для зображення кота
+    catImage.setAttribute('src', imageURL);
+    catImage.setAttribute('alt', 'Cat');
+  
+
+
 
 // Оновлення списку порід
 function updateBreedsList(breeds) {
