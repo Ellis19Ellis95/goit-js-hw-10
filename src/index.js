@@ -29,18 +29,6 @@ const description = document.querySelector('.description');
 const temperament = document.querySelector('.temperament');
 const catImage = document.querySelector('.cat-image');
 
-//показ завантажувача
-function showLoader() {
-  loader.classList.remove('hidden');
-  error.classList.add('hidden');
-  catInfo.classList.add('hidden');
-}
-
-//показ помилки
-function showError() {
-  loader.classList.add('hidden');
-  error.classList.remove('hidden');
-}
 
 
 function updateCatInfo(catData) {
@@ -65,6 +53,21 @@ function updateBreedsList(breeds) {
     option.textContent = breed.name;
     breedSelect.appendChild(option);
   });
+}
+
+
+// Код для показу/приховання елементів
+const loader = document.querySelector('.loader');
+const error = document.querySelector('.error');
+
+function showLoader() {
+  loader.classList.remove('hidden');
+  error.classList.add('hidden');
+}
+
+function showError() {
+  loader.classList.add('hidden');
+  error.classList.remove('hidden');
 }
 
 // після завантаження сторінки отримання списку порід
