@@ -3,7 +3,7 @@ import axios from 'axios';
 const apiKey = 'live_qZO7TNMdL1rg7fGC7EGhcr1xQ0BS5PeYcJYCFQPoKnJmK1M7zLIYuo7mVRMjgG7g'; 
 axios.defaults.headers.common['x-api-key'] = apiKey;
 
-// Функція для отримання списку порід котів
+// отримання списку порід котів
 export function fetchBreeds() {
   return axios.get('https://api.thecatapi.com/v1/breeds')
     .then(response => response.data)
@@ -12,7 +12,7 @@ export function fetchBreeds() {
     });
 }
 
-// Функція для отримання інформації про кота за його породою
+// отримання інформації про кота за його породою
 export function fetchCatByBreed(breedId) {
   return axios.get(`https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}`)
     .then(response => response.data)
@@ -29,14 +29,14 @@ const description = document.querySelector('.description');
 const temperament = document.querySelector('.temperament');
 const catImage = document.querySelector('.cat-image');
 
-// Функція показу завантажувача
+//показ завантажувача
 function showLoader() {
   loader.classList.remove('hidden');
   error.classList.add('hidden');
   catInfo.classList.add('hidden');
 }
 
-// Функція показу помилки
+//показ помилки
 function showError() {
   loader.classList.add('hidden');
   error.classList.remove('hidden');
@@ -52,7 +52,7 @@ function updateCatInfo(catData) {
     const imageURL = catData[0].url;
     const catImage = document.querySelector('.cat-image');
 
-    // Встановлення src та alt для зображення кота
+    // Встановлення src та alt для зображення 
    catImage.setAttribute('src', '');
    catImage.setAttribute('alt', 'Cat');
 }
@@ -67,7 +67,7 @@ function updateBreedsList(breeds) {
   });
 }
 
-// Після завантаження сторінки отримаємо список порід
+// Після завантаження сторінки отримання списку порід
 window.addEventListener('DOMContentLoaded', () => {
   showLoader();
   fetchBreeds()
@@ -81,7 +81,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Після обрання породи отримаємо інформацію про кота
+// Після обрання породи отримання інформації про кота
 breedSelect.addEventListener('change', () => {
   showLoader();
   const selectedBreedId = breedSelect.value;
