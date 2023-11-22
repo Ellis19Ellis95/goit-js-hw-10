@@ -19,7 +19,7 @@ export function fetchCatByBreed(breedId) {
     });
 }
 
-import { fetchBreeds, fetchCatByBreed } from './cat-api.js';
+import { fetchBreeds, fetchCatByBreed } from './cat-api';
 
 const breedSelect = document.querySelector('.breed-select');
 const loader = document.querySelector('.loader');
