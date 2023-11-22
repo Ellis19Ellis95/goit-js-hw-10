@@ -3,7 +3,7 @@ import axios from 'axios';
 const apiKey = 'live_qZO7TNMdL1rg7fGC7EGhcr1xQ0BS5PeYcJYCFQPoKnJmK1M7zLIYuo7mVRMjgG7g'; 
 axios.defaults.headers.common['x-api-key'] = apiKey;
 
-// отримання списку порід котів
+// отримання списку порід 
 export function fetchBreeds() {
   return axios.get('https://api.thecatapi.com/v1/breeds')
     .then(response => response.data)
@@ -12,7 +12,7 @@ export function fetchBreeds() {
     });
 }
 
-// отримання інформації про кота за його породою
+// отримання інформації за породою
 export function fetchCatByBreed(breedId) {
   return axios.get(`https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}`)
     .then(response => response.data)
@@ -48,16 +48,16 @@ function updateCatInfo(catData) {
     description.textContent = catData[0].breeds[0].description;
     temperament.textContent = catData[0].breeds[0].temperament;
   
-    // Отримання URL зображення
+    // отримання URL зображення
     const imageURL = catData[0].url;
     const catImage = document.querySelector('.cat-image');
 
-    // Встановлення src та alt для зображення 
+    // встановлення src та alt для зображення 
    catImage.setAttribute('src', '');
    catImage.setAttribute('alt', 'Cat');
 }
 
-// Оновлення списку порід
+// оновлення списку порід
 function updateBreedsList(breeds) {
   breeds.forEach(breed => {
     const option = document.createElement('option');
@@ -67,7 +67,7 @@ function updateBreedsList(breeds) {
   });
 }
 
-// Після завантаження сторінки отримання списку порід
+// після завантаження сторінки отримання списку порід
 window.addEventListener('DOMContentLoaded', () => {
   showLoader();
   fetchBreeds()
@@ -81,7 +81,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Після обрання породи отримання інформації про кота
+// після обрання породи отримання інформації про кота
 breedSelect.addEventListener('change', () => {
   showLoader();
   const selectedBreedId = breedSelect.value;
