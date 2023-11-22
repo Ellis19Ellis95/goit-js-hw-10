@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiKey = "твій ключ";
+const apiKey = "live_qZO7TNMdL1rg7fGC7EGhcr1xQ0BS5PeYcJYCFQPoKnJmK1M7zLIYuo7mVRMjgG7g";
 axios.defaults.headers.common["x-api-key"] = apiKey;
 
 // Приклад вставки отриманих даних у DOM
