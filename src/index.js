@@ -56,8 +56,6 @@ function updateCatInfo(catData) {
     catImage.setAttribute('alt', 'Cat');
 }
 
-
-
 // Оновлення списку порід
 function updateBreedsList(breeds) {
   breeds.forEach(breed => {
