@@ -1,3 +1,23 @@
+import axios from 'axios';
+
+const apiKey = 'live_qZO7TNMdL1rg7fGC7EGhcr1xQ0BS5PeYcJYCFQPoKnJmK1M7zLIYuo7mVRMjgG7g';
+axios.defaults.headers.common['x-api-key'] = apiKey;
+
+export function fetchBreeds() {
+  return axios.get('https://api.thecatapi.com/v1/breeds')
+    .then(response => response.data)
+    .catch(error => {
+      throw new Error(error);
+    });
+}
+
+export function fetchCatByBreed(breedId) {
+  return axios.get(`https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}`)
+    .then(response => response.data)
+    .catch(error => {
+      throw new Error(error);
+    });
+}
 
 import { fetchBreeds, fetchCatByBreed } from './cat-api.js';
 
@@ -10,28 +30,28 @@ const description = document.querySelector('.description');
 const temperament = document.querySelector('.temperament');
 const catImage = document.querySelector('.cat-image');
 
-// Відобразити повідомлення про помилку
-function showError() {
-  loader.classList.add('hidden');
-  error.classList.remove('hidden');
-}
-
-// Відобразити завантажувач
+// Функція показу завантажувача
 function showLoader() {
   loader.classList.remove('hidden');
   error.classList.add('hidden');
   catInfo.classList.add('hidden');
 }
 
-// Оновити відомості про кота
+// Функція показу помилки
+function showError() {
+  loader.classList.add('hidden');
+  error.classList.remove('hidden');
+}
+
+// Оновлення інформації про кота
 function updateCatInfo(catData) {
-  breedName.textContent = catData.breeds[0].name;
-  description.textContent = catData.breeds[0].description;
-  temperament.textContent = catData.breeds[0].temperament;
+  breedName.textContent = catData[0].breeds[0].name;
+  description.textContent = catData[0].breeds[0].description;
+  temperament.textContent = catData[0].breeds[0].temperament;
   catImage.src = catData[0].url;
 }
 
-// Оновити список порід
+// Оновлення списку порід
 function updateBreedsList(breeds) {
   breeds.forEach(breed => {
     const option = document.createElement('option');
@@ -41,7 +61,7 @@ function updateBreedsList(breeds) {
   });
 }
 
-// Заповнити select зі списком порід при завантаженні сторінки
+// Після завантаження сторінки отримаємо список порід
 window.addEventListener('DOMContentLoaded', () => {
   showLoader();
   fetchBreeds()
@@ -55,7 +75,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Оновити інформацію про кота після обрання породи у селекті
+// Після обрання породи отримаємо інформацію про кота
 breedSelect.addEventListener('change', () => {
   showLoader();
   const selectedBreedId = breedSelect.value;
@@ -68,10 +88,3 @@ breedSelect.addEventListener('change', () => {
       showError();
     });
 });
-
-// Додатковий код для встановлення URL зображення
-const imageURL = 'URL_З_ЗОБРАЖЕННЯМ';
-
-// Встановлюємо src за допомогою JavaScript
-catImage.setAttribute('src', imageURL);
-catImage.setAttribute('alt', 'Cat'); // Додатково встановлюємо атрибут alt
