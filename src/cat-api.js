@@ -36,3 +36,25 @@ catInfoElement.appendChild(breedNameElement);
 catInfoElement.appendChild(descriptionElement);
 catInfoElement.appendChild(temperamentElement);
 catInfoElement.appendChild(catImageElement);
+
+import axios from 'axios';
+
+const apiKey = 'YOUR_API_KEY_HERE'; // Замініть це на ваш ключ
+
+axios.defaults.headers.common['x-api-key'] = apiKey;
+
+export function fetchBreeds() {
+  return axios.get('https://api.thecatapi.com/v1/breeds')
+    .then(response => response.data)
+    .catch(error => {
+      throw new Error(error);
+    });
+}
+
+export function fetchCatByBreed(breedId) {
+  return axios.get(https://api.thecatapi.com/v1/images/search?breed_ids=${breedId})
+    .then(response => response.data)
+    .catch(error => {
+      throw new Error(error);
+    });
+}
