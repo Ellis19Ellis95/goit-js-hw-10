@@ -3,14 +3,43 @@ import { fetchBreeds, fetchCatByBreed } from './cat-api.js';
 const apiKey = 'live_qZO7TNMdL1rg7fGC7EGhcr1xQ0BS5PeYcJYCFQPoKnJmK1M7zLIYuo7mVRMjgG7g'; 
 axios.defaults.headers.common['x-api-key'] = apiKey;
 
-const breedSelect = document.querySelector('.breed-select');
-const loader = document.querySelector('.loader');
-const error = document.querySelector('.error');
-const catInfo = document.querySelector('.cat-info');
-const breedName = document.querySelector('.breed-name');
-const description = document.querySelector('.description');
-const temperament = document.querySelector('.temperament');
-const catImage = document.querySelector('.cat-image');
+const breedSelect = document.createElement('select');
+breedSelect.classList.add('breed-select');
+
+const loader = document.createElement('p');
+loader.classList.add('loader', 'hidden');
+loader.textContent = 'Loading data, please wait...';
+
+const error = document.createElement('p');
+error.classList.add('error', 'hidden');
+error.textContent = 'Oops! Something went wrong! Try reloading the page!';
+
+const catInfo = document.createElement('div');
+catInfo.classList.add('cat-info', 'hidden');
+
+const breedName = document.createElement('h2');
+breedName.classList.add('breed-name');
+
+const description = document.createElement('p');
+description.classList.add('description');
+
+const temperament = document.createElement('p');
+temperament.classList.add('temperament');
+
+const catImage = document.createElement('img');
+catImage.classList.add('cat-image');
+catImage.setAttribute('src', '');
+catImage.setAttribute('alt', 'Cat');
+
+document.body.appendChild(breedSelect);
+document.body.appendChild(loader);
+document.body.appendChild(error);
+document.body.appendChild(catInfo);
+
+catInfo.appendChild(breedName);
+catInfo.appendChild(description);
+catInfo.appendChild(temperament);
+catInfo.appendChild(catImage);
 
 function showError() {
   loader.classList.add('hidden');
@@ -27,7 +56,7 @@ function updateCatInfo(catData) {
   breedName.textContent = catData.breeds[0].name;
   description.textContent = catData.breeds[0].description;
   temperament.textContent = catData.breeds[0].temperament;
-  catImage.src = catData.url; // Замініть на потрібне поле зображення у вашому об'єкті даних
+  catImage.src = catData.url; 
 }
 
 function updateBreedsList(breeds) {
@@ -64,14 +93,3 @@ breedSelect.addEventListener('change', () => {
       showError();
     });
 });
-
-// Додання створених DOM-елементів на сторінку
-document.body.appendChild(breedSelect);
-document.body.appendChild(loader);
-document.body.appendChild(error);
-document.body.appendChild(catInfo);
-
-catInfo.appendChild(breedName);
-catInfo.appendChild(description);
-catInfo.appendChild(temperament);
-catInfo.appendChild(catImage);
