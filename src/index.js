@@ -31,6 +31,10 @@ catImage.classList.add('cat-image');
 catImage.setAttribute('src', '');
 catImage.setAttribute('alt', 'Cat');
 
+// Очистити вміст body перед додаванням нових елементів
+document.body.innerHTML = '';
+
+// Додавання елементів до body
 document.body.appendChild(breedSelect);
 document.body.appendChild(loader);
 document.body.appendChild(error);
@@ -53,13 +57,11 @@ function showLoader() {
 }
 
 function updateCatInfo(catData) {
-  
   if (catData.breeds && catData.breeds.length > 0) {
     breedName.textContent = catData.breeds[0].name;
     description.textContent = catData.breeds[0].description;
     temperament.textContent = catData.breeds[0].temperament;
   } else {
-   
     breedName.textContent = catData.someProperty;
     description.textContent = catData.someOtherProperty;
     temperament.textContent = catData.someAdditionalProperty;
