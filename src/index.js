@@ -1,6 +1,6 @@
-import { fetchBreeds, fetchCatByBreed } from './cat-api.js';
+import axios from 'axios';
 
-const apiKey = 'live_qZO7TNMdL1rg7fGC7EGhcr1xQ0BS5PeYcJYCFQPoKnJmK1M7zLIYuo7mVRMjgG7g'; 
+const apiKey = 'live_qZO7TNMdL1rg7fGC7EGhcr1xQ0BS5PeYcJYCFQPoKnJmK1M7zLIYuo7mVRMjgG7g';
 axios.defaults.headers.common['x-api-key'] = apiKey;
 
 const breedSelect = document.createElement('select');
@@ -53,10 +53,18 @@ function showLoader() {
 }
 
 function updateCatInfo(catData) {
-  breedName.textContent = catData.breeds[0].name;
-  description.textContent = catData.breeds[0].description;
-  temperament.textContent = catData.breeds[0].temperament;
-  catImage.src = catData.url; 
+  
+  if (catData.breeds && catData.breeds.length > 0) {
+    breedName.textContent = catData.breeds[0].name;
+    description.textContent = catData.breeds[0].description;
+    temperament.textContent = catData.breeds[0].temperament;
+  } else {
+   
+    breedName.textContent = catData.someProperty;
+    description.textContent = catData.someOtherProperty;
+    temperament.textContent = catData.someAdditionalProperty;
+  }
+  catImage.src = catData.url;
 }
 
 function updateBreedsList(breeds) {
