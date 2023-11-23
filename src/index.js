@@ -1,4 +1,9 @@
 import { fetchBreeds, fetchCatByBreed } from './cat-api.js';
+import axios from 'axios';
+
+const apiKey = 'live_qZO7TNMdL1rg7fGC7EGhcr1xQ0BS5PeYcJYCFQPoKnJmK1M7zLIYuo7mVRMjgG7g'; 
+
+axios.defaults.headers.common['x-api-key'] = apiKey;
 
 // Отримуємо посилання на елементи DOM
 const breedSelect = document.querySelector('.breed-select');
