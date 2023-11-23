@@ -1,5 +1,6 @@
 import { fetchBreeds, fetchCatByBreed } from './cat-api.js';
 
+// Отримуємо посилання на елементи DOM
 const breedSelect = document.querySelector('.breed-select');
 const loader = document.querySelector('.loader');
 const error = document.querySelector('.error');
@@ -9,28 +10,28 @@ const description = document.querySelector('.description');
 const temperament = document.querySelector('.temperament');
 const catImage = document.querySelector('.cat-image');
 
-// Відобразити повідомлення про помилку
+// Відображення повідомлення про помилку
 function showError() {
   loader.classList.add('hidden');
   error.classList.remove('hidden');
 }
 
-// Відобразити завантажувач
+// Відображення завантажувача
 function showLoader() {
   loader.classList.remove('hidden');
   error.classList.add('hidden');
   catInfo.classList.add('hidden');
 }
 
-// Оновити відомості про кота
+// Оновлення відомостей про кота
 function updateCatInfo(catData) {
   breedName.textContent = catData.breeds[0].name;
   description.textContent = catData.breeds[0].description;
   temperament.textContent = catData.breeds[0].temperament;
-  catImage.src = catData[0].url;
+  catImage.src = catData.url; // Припущення: поле url містить посилання на зображення
 }
 
-// Оновити список порід
+// Оновлення списку порід
 function updateBreedsList(breeds) {
   breeds.forEach(breed => {
     const option = document.createElement('option');
@@ -40,7 +41,7 @@ function updateBreedsList(breeds) {
   });
 }
 
-// Заповнити select зі списком порід при завантаженні сторінки
+// Заповнення select зі списком порід при завантаженні сторінки
 window.addEventListener('DOMContentLoaded', () => {
   showLoader();
   fetchBreeds()
@@ -54,7 +55,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Оновити інформацію про кота після обрання породи у селекті
+// Оновлення інформації про кота після вибору породи у селекті
 breedSelect.addEventListener('change', () => {
   showLoader();
   const selectedBreedId = breedSelect.value;
