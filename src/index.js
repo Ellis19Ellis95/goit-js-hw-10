@@ -1,105 +1,60 @@
-import axios from 'axios';
+import { fetchBreeds, fetchCatByBreed } from "./js/cat-api";
 
-const apiKey = 'live_qZO7TNMdL1rg7fGC7EGhcr1xQ0BS5PeYcJYCFQPoKnJmK1M7zLIYuo7mVRMjgG7g';
-axios.defaults.headers.common['x-api-key'] = apiKey;
-
-const breedSelect = document.createElement('select');
-breedSelect.classList.add('breed-select');
-
-const loader = document.createElement('p');
-loader.classList.add('loader', 'hidden');
-loader.textContent = 'Loading data, please wait...';
-
-const error = document.createElement('p');
-error.classList.add('error', 'hidden');
-error.textContent = 'Oops! Something went wrong! Try reloading the page!';
-
-const catInfo = document.createElement('div');
-catInfo.classList.add('cat-info', 'hidden');
-
-const breedName = document.createElement('h2');
-breedName.classList.add('breed-name');
-
-const description = document.createElement('p');
-description.classList.add('description');
-
-const temperament = document.createElement('p');
-temperament.classList.add('temperament');
-
-const catImage = document.createElement('img');
-catImage.classList.add('cat-image');
-catImage.setAttribute('src', '');
-catImage.setAttribute('alt', 'Cat');
-
-// Очистити вміст body перед додаванням нових елементів
-document.body.innerHTML = '';
-
-// Додавання елементів до body
-document.body.appendChild(breedSelect);
-document.body.appendChild(loader);
-document.body.appendChild(error);
-document.body.appendChild(catInfo);
-
-catInfo.appendChild(breedName);
-catInfo.appendChild(description);
-catInfo.appendChild(temperament);
-catInfo.appendChild(catImage);
-
-function showError() {
-  loader.classList.add('hidden');
-  error.classList.remove('hidden');
-}
-
-function showLoader() {
-  loader.classList.remove('hidden');
-  error.classList.add('hidden');
-  catInfo.classList.add('hidden');
-}
-
-function updateCatInfo(catData) {
-  if (catData.breeds && catData.breeds.length > 0) {
-    breedName.textContent = catData.breeds[0].name;
-    description.textContent = catData.breeds[0].description;
-    temperament.textContent = catData.breeds[0].temperament;
-  } else {
-    breedName.textContent = catData.someProperty;
-    description.textContent = catData.someOtherProperty;
-    temperament.textContent = catData.someAdditionalProperty;
-  }
-  catImage.src = catData.url;
-}
-
-function updateBreedsList(breeds) {
-  breeds.forEach(breed => {
-    const option = document.createElement('option');
-    option.value = breed.id;
-    option.textContent = breed.name;
-    breedSelect.appendChild(option);
-  });
-}
+const loader = document.querySelector('.loader');
+const error = document.querySelector('.error');
+const catInfo = document.querySelector('.cat-info');
+const breedSelect = document.querySelector('.breed-select');
 
 window.addEventListener('DOMContentLoaded', () => {
   showLoader();
   fetchBreeds()
     .then(breeds => {
       updateBreedsList(breeds);
-      loader.classList.add('hidden');
-      breedSelect.classList.remove('hidden');
+     // loader.classList.add('hidden');
+      //breedSelect.classList.remove('hidden');
     })
     .catch(() => {
-      showError();
+      //showError();
     });
 });
+
+function updateBreedsList(breeds) {
+    const elements = breeds.map(breed => {
+const option = document.createElement('option');
+option.value = breed.id;
+option.textContent = breed.name;
+return option;
+    })
+breedSelect.append(...elements);   
+breedSelect.classList.remove('hidden');
+loader.classList.add('hidden');    
+}
+
 
 breedSelect.addEventListener('change', () => {
   showLoader();
   const selectedBreedId = breedSelect.value;
   fetchCatByBreed(selectedBreedId)
     .then(catData => {
-      updateCatInfo(catData);
-      catInfo.classList.remove('hidden');
+        console.log(catData);
+      //updateCatInfo(catData);
+      //catInfo.classList.remove('hidden');
     })
     .catch(() => {
       showError();
     });
 });
+
+
+function updateCatInfo(catData) {
+     `<div class="cat-image">
+        <img src="${catData.url}" alt="${catData.name}" />
+        <div>
+          <h3>${catData.name}</h3>
+          <p>${catData.description || 'No description available'}</p>
+          <p>Temperament: ${catData.temperament || 'Unknown temperament'}</p>
+        </div>
+      </div>`;
+  }
+
+
