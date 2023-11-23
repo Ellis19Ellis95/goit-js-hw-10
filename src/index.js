@@ -48,6 +48,7 @@ breedSelect.addEventListener('change', () => {
 });
 
 function updateCatInfo(catData) {
+    console.log(catData);
   const catInfoHTML = `
     <div class="cat-image">
       <img src="${catData.url}" alt="${catData.name}" />
@@ -59,6 +60,11 @@ function updateCatInfo(catData) {
     </div>`;
   catInfo.innerHTML = catInfoHTML;
 }
+
+
+
+
+
 
 function showLoader() {
   loader.classList.remove('hidden');
