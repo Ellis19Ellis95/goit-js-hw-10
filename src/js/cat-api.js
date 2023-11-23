@@ -13,7 +13,7 @@ export function fetchBreeds() {
 }
 
 export function fetchCatByBreed(breedId) {
-  return axios.get(`https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}`)
+  return axios.get(`https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}&api_key=${apiKey}`)
     .then(response => response.data)
     .catch(error => {
       console.error('Error fetching cat by breed:', error);
