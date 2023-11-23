@@ -10,11 +10,8 @@ window.addEventListener('DOMContentLoaded', () => {
   fetchBreeds()
     .then(breeds => {
       updateBreedsList(breeds);
-     // loader.classList.add('hidden');
-      //breedSelect.classList.remove('hidden');
     })
     .catch(() => {
-      //showError();
     });
 });
 
@@ -37,8 +34,6 @@ breedSelect.addEventListener('change', () => {
   fetchCatByBreed(selectedBreedId)
     .then(catData => {
         console.log(catData);
-      //updateCatInfo(catData);
-      //catInfo.classList.remove('hidden');
     })
     .catch(() => {
       showError();
