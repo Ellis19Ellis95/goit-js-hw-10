@@ -7,16 +7,13 @@ axios.defaults.headers.common['x-api-key'] = apiKey;
 export function fetchBreeds() {
   return axios.get('https://api.thecatapi.com/v1/breeds')
     .then(response => response.data)
-    .catch(error => {
-      throw new Error(error);
-    });
-}
+    };
+
 
 export function fetchCatByBreed(breedId) {
-  return axios.get(`https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}&api_key=${apiKey}`)
-    .then(response => response.data)
-    .catch(error => {
-      console.error('Error fetching cat by breed:', error);
-      throw error;
-    });
-}
+    const apiUrl = `https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}&api_key=${apiKey}`;
+    return fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => data)
+      };
+  
