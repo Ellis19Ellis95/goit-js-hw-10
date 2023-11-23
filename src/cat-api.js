@@ -39,7 +39,7 @@ catInfoElement.appendChild(catImageElement);
 
 import axios from 'axios';
 
-const apiKey = 'YOUR_API_KEY_HERE'; // Замініть це на ваш ключ
+const apiKey = 'live_qZO7TNMdL1rg7fGC7EGhcr1xQ0BS5PeYcJYCFQPoKnJmK1M7zLIYuo7mVRMjgG7g'; // Замініть це на ваш ключ
 
 axios.defaults.headers.common['x-api-key'] = apiKey;
 
