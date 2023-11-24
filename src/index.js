@@ -50,17 +50,17 @@ breedSelect.addEventListener('change', () => {
 
 function updateCatInfo(catData) {
     console.log(catData);
-  const catInfoHTML = `
-    <div class="cat-image">
-      <img src="${catData.url}" alt="${catData.name}" />
-      <div>
-        <h3>${catData.name}</h3>
-        <p>${catData.description}</p>
-        <p>Temperament: <span>${catData.temperament}</span></p>
-      </div>
-    </div>`;
-  catInfo.innerHTML = catInfoHTML;
-}
+    const catInfoHTML = `
+      <div class="cat-image">
+        <img src="${catData.url}" alt="${catData.name}" />
+        <div>
+          <h3>${catData.name}</h3>
+          ${catData.description ? `<p>${catData.description}</p>` : ''}
+          ${catData.temperament ? `<p>Temperament: <span>${catData.temperament}</span></p>` : ''}
+        </div>
+      </div>`;
+    catInfo.innerHTML = catInfoHTML;
+  }
 
 function showLoader() {
   loader.classList.remove('hidden');
@@ -72,7 +72,3 @@ function showLoader() {
   //loader.classList.add('hidden');
   //catInfo.classList.add('hidden');
 //}
-document.addEventListener('DOMContentLoaded', () => {
-    const loader = document.querySelector('.loader');
-    loader.style.display = 'none'; 
-  });
