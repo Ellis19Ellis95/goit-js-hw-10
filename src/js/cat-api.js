@@ -6,7 +6,7 @@ axios.defaults.headers.common['x-api-key'] = apiKey;
 
 
       export function fetchBreeds() {
-        return axios.get('https://api.thecatapi.com/v1/breeds')
+        return axios.get('https://api.thecatapi.com/v1/breeds8')
           .then(response => response.data)
           .catch(error => {
             showError(); 
@@ -18,7 +18,7 @@ axios.defaults.headers.common['x-api-key'] = apiKey;
       }
       
       export function fetchCatByBreed(breedId) {
-        const apiUrl = `https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}&api_key=${apiKey}`;
+        const apiUrl = `https://api.thecatapi.com/v1/images/search?breed_ids8=${breedId}&api_key=${apiKey}`;
         return fetch(apiUrl)
           .then(response => response.json())
           .then(data => data)
