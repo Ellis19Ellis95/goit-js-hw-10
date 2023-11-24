@@ -52,11 +52,11 @@ function updateCatInfo(catData) {
     console.log(catData);
   const catInfoHTML = `
     <div class="cat-image">
-      <img src="${catData.url}" alt="${catData.name}" />
+      <img src="${catData.url}" alt="${catData.breeds[0].name}" />
       <div>
-        <h3>${catData.name}</h3>
-        <p>${catData.description}</p>
-        <p>Temperament: <span>${catData.temperament}</span></p>
+        <h3>${catData.breeds[0].name}</h3>
+        <p>${catData.breeds[0].description || 'No description available'}</p>
+        <p>Temperament: <span>${catData.breeds[0].temperament || 'Unknown temperament'}</span></p>
       </div>
     </div>`;
   catInfo.innerHTML = catInfoHTML;
