@@ -1,13 +1,8 @@
 import { fetchBreeds, fetchCatByBreed } from "./js/cat-api";
 
 const loader = document.querySelector('.loader');
-const error = document.querySelector('.error');
-const catInfo = document.querySelector('.cat-info');
 const breedSelect = document.querySelector('.breed-select');
-const catImage = document.querySelector('.cat-image img');
-const catName = document.querySelector('.cat-info h3');
-const catDescription = document.querySelector('.cat-info p');
-const catTemperament = document.querySelector('.cat-info span');
+const catInfo = document.querySelector('.cat-info');
 
 window.addEventListener('DOMContentLoaded', () => {
   showLoader();
@@ -15,6 +10,7 @@ window.addEventListener('DOMContentLoaded', () => {
     .then(breeds => {
       updateBreedsList(breeds);
       breedSelect.classList.remove('hidden');
+      hideLoader(); // Приховуємо елемент завантаження після завершення завантаження порід
     })
     .catch(() => {
       showError();
@@ -29,16 +25,6 @@ function updateBreedsList(breeds) {
     return option;
   });
   breedSelect.append(...elements);   
-  breedSelect.classList.remove('hidden');
-  loader.classList.add('hidden');
-
-  // Приховати елемент завантаження після завантаження списку порід
-  hideLoader();
-}
-
-// Функція, яка ховає елемент завантаження
-function hideLoader() {
-  loader.classList.add('hidden');
 }
 
 breedSelect.addEventListener('change', () => {
@@ -49,6 +35,7 @@ breedSelect.addEventListener('change', () => {
     .then(catData => {
       updateCatInfo(catData[0]);
       catInfo.classList.remove('hidden');
+      hideLoader(); // Приховуємо елемент завантаження після завершення завантаження даних про кота
     })
     .catch(() => {
       showError();
@@ -70,4 +57,8 @@ function updateCatInfo(catData) {
 
 function showLoader() {
   loader.classList.remove('hidden');
+}
+
+function hideLoader() {
+  loader.classList.add('hidden');
 }
