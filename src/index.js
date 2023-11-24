@@ -54,9 +54,9 @@ function updateCatInfo(catData) {
     <div class="cat-image">
       <img src="${catData.url}" alt="${catData.name}" />
       <div>
-        <h3>${catData.name}</h3>
-        <p>${catData.description}</p>
-        <p>Temperament: <span>${catData.temperament}</span></p>
+        <h3>${catData.name}&api_key=${apiKey}</h3>
+        <p>${catData.description}&api_key=${apiKey}</p>
+        <p>Temperament: <span>${catData.temperament}&api_key=${apiKey}</span></p>
       </div>
     </div>`;
   catInfo.innerHTML = catInfoHTML;
