@@ -72,3 +72,7 @@ function showLoader() {
   //loader.classList.add('hidden');
   //catInfo.classList.add('hidden');
 //}
+document.addEventListener('DOMContentLoaded', () => {
+    const loader = document.querySelector('.loader');
+    loader.style.display = 'none'; 
+  });
