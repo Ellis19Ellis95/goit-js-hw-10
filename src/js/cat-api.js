@@ -12,7 +12,7 @@ export function fetchBreeds() {
   const errorElement = document.querySelector('.error');
   errorElement.classList.add('hidden'); 
 
-  return axios.get('https://api.hecatapi.com/v1/breeds')
+  return axios.get('https://api.thecatapi.com/v1/breeds')
     .then(response => {
       loader.classList.add('hidden'); 
       return response.data;
@@ -31,7 +31,7 @@ export function fetchCatByBreed(breedId) {
   const errorElement = document.querySelector('.error');
   errorElement.classList.add('hidden'); 
 
-  const apiUrl = `https://api.hecatapi.com/v1/images/search?breed_ids=${breedId}&api_key=${apiKey}`;
+  const apiUrl = `https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}&api_key=${apiKey}`;
   return fetch(apiUrl)
     .then(response => {
       loader.classList.add('hidden');
