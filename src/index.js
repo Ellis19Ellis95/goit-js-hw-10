@@ -14,7 +14,6 @@ window.addEventListener('DOMContentLoaded', () => {
   fetchBreeds()
     .then(breeds => {
       updateBreedsList(breeds);
-      loader.classList.add('hidden');
       breedSelect.classList.remove('hidden');
     })
     .catch(() => {
@@ -31,7 +30,15 @@ function updateBreedsList(breeds) {
   });
   breedSelect.append(...elements);   
   breedSelect.classList.remove('hidden');
-  loader.classList.add('hidden');    
+  loader.classList.add('hidden');
+
+  // Приховати елемент завантаження після завантаження списку порід
+  hideLoader();
+}
+
+// Функція, яка ховає елемент завантаження
+function hideLoader() {
+  loader.classList.add('hidden');
 }
 
 breedSelect.addEventListener('change', () => {
@@ -49,7 +56,6 @@ breedSelect.addEventListener('change', () => {
 });
 
 function updateCatInfo(catData) {
-    console.log(catData);
   const catInfoHTML = `
     <div class="cat-image">
       <img src="${catData.url}" alt="${catData.breeds[0].name}" />
@@ -64,11 +70,4 @@ function updateCatInfo(catData) {
 
 function showLoader() {
   loader.classList.remove('hidden');
- 
 }
-
-//function showError() {
-  //error.classList.remove('hidden');
-  //loader.classList.add('hidden');
-  //catInfo.classList.add('hidden');
-//}
