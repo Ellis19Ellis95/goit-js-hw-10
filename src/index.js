@@ -36,6 +36,7 @@ function updateBreedsList(breeds) {
 
 breedSelect.addEventListener('change', () => {
   showLoader();
+  catInfo.innerHTML = '';
   const selectedBreedId = breedSelect.value;
   fetchCatByBreed(selectedBreedId)
     .then(catData => {
@@ -63,12 +64,11 @@ function updateCatInfo(catData) {
 
 function showLoader() {
   loader.classList.remove('hidden');
-  error.classList.add('hidden');
-  catInfo.classList.add('hidden');
+ 
 }
 
-function showError() {
-  error.classList.remove('hidden');
-  loader.classList.add('hidden');
-  catInfo.classList.add('hidden');
-}
+//function showError() {
+  //error.classList.remove('hidden');
+  //loader.classList.add('hidden');
+  //catInfo.classList.add('hidden');
+//}
