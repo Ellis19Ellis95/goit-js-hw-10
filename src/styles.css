@@ -29,16 +29,11 @@
 
 .error {
   color: red;
-  /*display: none;*/
+  font-weight: bold;
 }
 
-/*.show-error {
-  display: block;
-}
-
-
-/*.loader {
-  display: block; 
+.loader {
+  font-weight: bold;
 }
 
 
