@@ -5,7 +5,7 @@
 .cat-image {
   display: flex;
   gap: 40px;
-  margin: 40px;
+  
 }
 .cat-image img {
   max-width: 40%;
@@ -13,6 +13,10 @@
 }
 .cat-image div {
   width: 60%;
+}
+
+.breed-select {
+  margin-bottom: 40px; 
 }
 
 .cat-info {
