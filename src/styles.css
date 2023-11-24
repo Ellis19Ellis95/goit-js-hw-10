@@ -2,8 +2,6 @@
   display: none;
 }
 
-
-
 .cat-image {
   display: flex;
   width: 100%;
@@ -20,10 +18,8 @@
   box-sizing: border-box;
 }
 
-.cat-image div p {
+.cat-info span {
   font-weight: bold;
 }
 
-.cat-image div p span {
-  font-weight: normal;
-}
+
