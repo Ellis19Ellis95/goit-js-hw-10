@@ -12,11 +12,11 @@
   height: auto;
 }
 
-/*.cat-image div {
+.cat-image div {
   width: 60%;
   padding-left: 20px;
   box-sizing: border-box;
-}*/
+}
 
 .cat-info {
   font-weight: bold;
