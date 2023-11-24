@@ -59,7 +59,7 @@ function updateCatInfo(catData) {
         <p>Temperament: <span>${catData.temperament}</span></p>
       </div>
     </div>`;
-  //catInfo.innerHTML = catInfoHTML;
+  catInfo.innerHTML = catInfoHTML;
 }
 
 function showLoader() {
