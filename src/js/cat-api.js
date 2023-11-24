@@ -6,39 +6,41 @@ const apiKey = 'live_qZO7TNMdL1rg7fGC7EGhcr1xQ0BS5PeYcJYCFQPoKnJmK1M7zLIYuo7mVRM
 axios.defaults.headers.common['x-api-key'] = apiKey;
 
 export function fetchBreeds() {
+  const loader = document.querySelector('.loader');
+  loader.classList.remove('hidden'); 
+
   return axios.get('https://api.thecatapi.com/v1/breeds')
     .then(response => {
       const errorElement = document.querySelector('.error');
-      if (errorElement) {
-        errorElement.classList.remove('show-error');
-      }
+      errorElement.classList.add('hidden'); 
+      loader.classList.add('hidden'); 
       return response.data;
     })
     .catch(error => {
       const errorElement = document.querySelector('.error');
-      if (errorElement) {
-        errorElement.classList.add('show-error');
-      }
+      errorElement.classList.remove('hidden'); 
+      loader.classList.add('hidden'); 
       throw new Error(error);
     });
 }
 
 export function fetchCatByBreed(breedId) {
+  const loader = document.querySelector('.loader');
+  loader.classList.remove('hidden'); 
+
   const apiUrl = `https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}&api_key=${apiKey}`;
   return fetch(apiUrl)
     .then(response => {
       const errorElement = document.querySelector('.error');
-      if (errorElement) {
-        errorElement.classList.remove('show-error');
-      }
+      errorElement.classList.add('hidden'); 
+      loader.classList.add('hidden'); 
       return response.json();
     })
     .then(data => data)
     .catch(error => {
       const errorElement = document.querySelector('.error');
-      if (errorElement) {
-        errorElement.classList.add('show-error');
-      }
+      errorElement.classList.remove('hidden'); 
+      loader.classList.add('hidden'); 
       throw new Error(error);
     });
 }
