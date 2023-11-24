@@ -9,15 +9,15 @@ export function fetchBreeds() {
   const loader = document.querySelector('.loader');
   loader.classList.remove('hidden'); 
 
+  const errorElement = document.querySelector('.error');
+  errorElement.classList.add('hidden'); 
+
   return axios.get('https://api.thecatapi.com/v1/breeds')
     .then(response => {
-      const errorElement = document.querySelector('.error');
-      errorElement.classList.add('hidden'); 
       loader.classList.add('hidden'); 
       return response.data;
     })
     .catch(error => {
-      const errorElement = document.querySelector('.error');
       errorElement.classList.remove('hidden'); 
       loader.classList.add('hidden'); 
       throw new Error(error);
@@ -28,17 +28,17 @@ export function fetchCatByBreed(breedId) {
   const loader = document.querySelector('.loader');
   loader.classList.remove('hidden'); 
 
+  const errorElement = document.querySelector('.error');
+  errorElement.classList.add('hidden'); 
+
   const apiUrl = `https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}&api_key=${apiKey}`;
   return fetch(apiUrl)
     .then(response => {
-      const errorElement = document.querySelector('.error');
-      errorElement.classList.add('hidden'); 
-      loader.classList.add('hidden'); 
+      loader.classList.add('hidden');
       return response.json();
     })
     .then(data => data)
     .catch(error => {
-      const errorElement = document.querySelector('.error');
       errorElement.classList.remove('hidden'); 
       loader.classList.add('hidden'); 
       throw new Error(error);

@@ -29,10 +29,10 @@
 
 .error {
   color: red;
-  display: none;
+  /*display: none;*/
 }
 
-.show-error {
+/*.show-error {
   display: block;
 }
 
