@@ -7,8 +7,18 @@ axios.defaults.headers.common['x-api-key'] = apiKey;
 
 export function fetchBreeds() {
   return axios.get('https://api.thecatapi.com/v1/breeds')
-    .then(response => response.data)
+    .then(response => {
+      const errorElement = document.querySelector('.error');
+      if (errorElement) {
+        errorElement.classList.remove('show-error');
+      }
+      return response.data;
+    })
     .catch(error => {
+      const errorElement = document.querySelector('.error');
+      if (errorElement) {
+        errorElement.classList.add('show-error');
+      }
       throw new Error(error);
     });
 }
@@ -16,9 +26,19 @@ export function fetchBreeds() {
 export function fetchCatByBreed(breedId) {
   const apiUrl = `https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}&api_key=${apiKey}`;
   return fetch(apiUrl)
-    .then(response => response.json())
+    .then(response => {
+      const errorElement = document.querySelector('.error');
+      if (errorElement) {
+        errorElement.classList.remove('show-error');
+      }
+      return response.json();
+    })
     .then(data => data)
     .catch(error => {
+      const errorElement = document.querySelector('.error');
+      if (errorElement) {
+        errorElement.classList.add('show-error');
+      }
       throw new Error(error);
     });
 }
