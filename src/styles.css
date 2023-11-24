@@ -26,3 +26,7 @@
 .cat-info span {
   font-weight: normal;
 }
+
+.error {
+  color: red;
+}
