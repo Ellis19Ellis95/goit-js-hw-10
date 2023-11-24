@@ -5,6 +5,7 @@
 .cat-image {
   display: flex;
   gap: 40px;
+  margin: 40px;
 }
 .cat-image img {
   max-width: 40%;
