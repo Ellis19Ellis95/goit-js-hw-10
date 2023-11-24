@@ -5,7 +5,7 @@ const apiKey = 'live_qZO7TNMdL1rg7fGC7EGhcr1xQ0BS5PeYcJYCFQPoKnJmK1M7zLIYuo7mVRM
 axios.defaults.headers.common['x-api-key'] = apiKey;
 
 export function fetchBreeds() {
-  return axios.get('https://api.thecatapi. com/v1/breeds')
+  return axios.get('https://api.thecatapi.com/v1/breeds')
     .then(response => response.data)
     };
 
