@@ -1,3 +1,29 @@
 .hidden {
   display: none;
 }
+
+
+
+.cat-image {
+  display: flex;
+  width: 100%;
+}
+
+.cat-image img {
+  width: 40%;
+  height: auto;
+}
+
+.cat-image div {
+  width: 60%;
+  padding-left: 20px;
+  box-sizing: border-box;
+}
+
+.cat-image div p {
+  font-weight: bold;
+}
+
+.cat-image div p span {
+  font-weight: normal;
+}
