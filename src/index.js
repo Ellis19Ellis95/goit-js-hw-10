@@ -10,7 +10,7 @@ window.addEventListener('DOMContentLoaded', () => {
     .then(breeds => {
       updateBreedsList(breeds);
       breedSelect.classList.remove('hidden');
-      hideLoader(); // Приховуємо елемент завантаження після завершення завантаження порід
+      hideLoader();
     })
     .catch(() => {
       showError();
@@ -35,7 +35,7 @@ breedSelect.addEventListener('change', () => {
     .then(catData => {
       updateCatInfo(catData[0]);
       catInfo.classList.remove('hidden');
-      hideLoader(); // Приховуємо елемент завантаження після завершення завантаження даних про кота
+      hideLoader(); 
     })
     .catch(() => {
       showError();
